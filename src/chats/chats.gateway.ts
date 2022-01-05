@@ -36,8 +36,7 @@ export class ChatsGateway
     @MessageBody() username: string,
     @ConnectedSocket() socket: Socket,
   ): string {
-    console.log(username);
-    socket.emit('hello_user', 'hello' + username);
-    return 'hello?';
+    socket.broadcast.emit('user_connected', username);
+    return username;
   }
 }
